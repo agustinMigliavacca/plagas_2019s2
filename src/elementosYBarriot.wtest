@@ -1,0 +1,52 @@
+import elementos.*
+import barrios.*
+import plagas.*
+
+test "hogar" {
+	const hogar = new Hogar(nivelDeMugre = 25 , confort = 30)
+	const cucarachas = new Cucarachas(poblacion = 30 , peso = 12 )
+	hogar.recibirAtaque(cucarachas)
+	
+	assert.equals(15, hogar.nivelDeMugre())
+	assert.that(hogar.esBuenoParaLaVida())
+	
+}
+
+test "huerta" {
+	const huerta = new Huerta(capacidadDeProduccion = 25 , nivel = 30)
+	
+	const cucarachas = new Cucarachas(poblacion = 30 , peso = 12 )
+	huerta.recibirAtaque(cucarachas)
+	
+	assert.equals(13.5, huerta.capacidadDeProduccion())
+	assert.notThat(huerta.esBuenoParaLaVida())
+	
+}
+
+test "mascota" {
+	const firulay = new Mascota( nivelDeSalud = 30)
+	
+	const cucarachas = new Cucarachas(poblacion = 30 , peso = 12 )
+	firulay.recibirAtaque(cucarachas)
+	
+	assert.equals(15,firulay.nivelDeSalud())
+	assert.notThat(firulay.esBuenoParaLaVida())
+	
+}
+
+test "barrio" {
+	const firulay = new Mascota( nivelDeSalud = 30)
+	const huerta = new Huerta(capacidadDeProduccion = 35 , nivel = 30)
+	const hogar = new Hogar(nivelDeMugre = 25 , confort = 30)
+	
+	
+	const barrio = new Barrios()
+	barrio.agregar(firulay)
+	barrio.agregar(huerta)
+	barrio.agregar(hogar)
+	
+	assert.equals([huerta], barrio.esBueno())
+	
+	assert.notThat(barrio.esCopado())
+	
+}

@@ -1,0 +1,47 @@
+import plagas.*
+import elementos.*
+import barrios.*
+
+test "cucaracharas" {
+	const cucarachas = new Cucarachas(poblacion = 25, peso = 10)
+	const hogar = new Hogar(nivelDeMugre = 20, confort = 50)
+	
+	cucarachas.efectoDeAtaque(hogar)
+	assert.equals(27.5, cucarachas.poblacion())
+	assert.equals(12, cucarachas.peso())
+}	 
+
+
+test "pulgas" {
+	const pulgas = new Pulgas(poblacion = 30)
+	const hogar = new Hogar(nivelDeMugre = 20, confort = 50)
+	pulgas.efectoDeAtaque(hogar)
+	assert.equals(33, pulgas.poblacion())
+	assert.equals(66, pulgas.nivelDeDanio())
+	assert.that(pulgas.transmiteEnfermedad())
+	
+	
+}
+
+test "garrapatas" {
+	const garrapatas = new Garrapatas(poblacion = 30)
+	const hogar = new Hogar(nivelDeMugre = 20, confort = 50)
+	garrapatas.efectoDeAtaque(hogar)
+	assert.equals(36, garrapatas.poblacion())
+	assert.equals(72, garrapatas.nivelDeDanio())
+	assert.that(garrapatas.transmiteEnfermedad())
+	
+	
+}
+
+test "mosquitos" {
+	const mosquitos = new Mosquitos(poblacion = 30)
+	const hogar = new Hogar(nivelDeMugre = 20, confort = 50)
+	mosquitos.efectoDeAtaque(hogar)
+	assert.equals(33, mosquitos.poblacion())
+	assert.equals(33, mosquitos.nivelDeDanio())
+	assert.that(mosquitos.transmiteEnfermedad())
+	
+	
+}
+
